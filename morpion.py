@@ -10,9 +10,9 @@ class morpion :
     def __init__(self): 
         self.tab = [['□' for i in range(3)]for j in range(3)] 
         self.joueurPlay1 = input("Joueur 1 choississez la figure que vous voulez jouer : ")
-        self.joueurPlay2 = random.choices("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+        self.joueurPlay2 = choice(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
         self.alreadyPlay = []
-        self.firstPlayer = random.choices(0,1) # choix du joueur qui commence
+        self.firstPlayer = choice([0,1]) # choix du joueur qui commence
 
     def printTab(self):
         """ Affiche le plateau du morpion comme le vrai jeu"""
@@ -43,16 +43,16 @@ class morpion :
         return self.printTab()
         
 
-    def game():
+    def game(self):
         robot = input("Voulez vous jouer avec un bot ? [True or False] ")
         choixRobot = ""
-        self.joueurPlay2 = input("Joueur 2 choississez la figure que vous voulez jouer : ")
         if robot :
             while not choixRobot in self.alreadyPlay:
                 choixRobot = str(randint(1, 9))
             self.alreadyPlay.append(choixRobot)
             morpion().emplacementJoueur(choixRobot, self.caseJoueurPlay2)  
         else :
+            self.joueurPlay2 = input("Joueur 2 choississez la figure que vous voulez jouer : ")
             if self.firstPlayer == 0 :
                 while not caseJoueurPlay1 in self.alreadyPlay:
                     caseJoueurPlay1 = input("Joueur 1 Choississez votre choix pour jouer : ")
@@ -99,4 +99,4 @@ class morpion :
 
 
 
-morpion().emplacementJoueur()          
+morpion().game()          
