@@ -105,6 +105,8 @@ def whoWin():
             return print("Joueur 2 win")
         else :
             pass
+    if "0" not in Victoire():
+        return print("Egalité")
 
 def game():
     global firstPlayer, joueurPlay2
