@@ -174,5 +174,5 @@ def game():
     print("Egalité")
     return 
             
-        
+
 game()          
