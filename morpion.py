@@ -146,7 +146,7 @@ def game():
                 caseJoueurPlay1 = input("Joueur 1 faite votre choix pour jouer : ") 
                 print("\n")
                 while caseJoueurPlay1 in alreadyPlay:
-                    caseJoueurPlay1 = input("Joueur 2 refaite votre choix pour jouer : ")
+                    caseJoueurPlay1 = input("Joueur 1 refaite votre choix pour jouer : ")
                     print("\n")
                 alreadyPlay.append(caseJoueurPlay1)
                 emplacementJoueur(caseJoueurPlay1, joueurPlay1) 
@@ -176,7 +176,5 @@ def game():
             
         
         
-    
-
 
 game()          
