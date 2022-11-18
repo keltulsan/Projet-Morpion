@@ -12,47 +12,71 @@ taille = 3
 
 def tailleGrille(taille):
     """créer tableau de tableau de longueur rentré par l'utilisateur"""
-    tab = [['□' for i in range(taille)]for j in range(taille)] 
+    cpt = 1
+    tab = [['□' for i in range(taille)] for j in range(taille)]
+    for i in range(taille):
+        for j in range(taille):
+            tab[i][j] = str(cpt)
+            cpt += 1
     return tab
 
 
 
 tab = tailleGrille(taille) 
+tabFictif = [['□' for i in range(taille)]for j in range(taille)]
+
 longueurTab = len(tab)*len(tab)
 joueurPlay1 = input("Joueur 1 choississez la figure que vous voulez jouer : ")
+
+while joueurPlay1 in [str(i) for i in range(1, 10)]:
+    joueurPlay1 = input("Joueur 1 rechoississez la figure que vous voulez jouer : ")
+
 joueurPlay2 = choice(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]) # choix alea figure
 alreadyPlay = [] 
 firstPlayer = choice([0,1]) # choix du joueur qui commence
 print("Vous joueurez en " + str(firstPlayer) + " - - - - - [0 : Vous commencez et 1 : Vous jouerez en second]")
 
-
-def printTab():
+def afficher():
     """ Affiche le plateau du morpion comme le vrai jeu"""
-    for i in tab:
-        print(i)
-    print('')
+    grille = "\n"
+    for i in range(taille):
+        for j in range(taille):
+            grille += "| " + tab[i][j] + " "
+        grille += "|"
+        grille += " \n- - - - - - -\n"
+    print(grille)
+            
 
 def emplacementJoueur (choix, coup_Joueur):
     """ Modifie l'emplacement dans le cadriallage du morpion par la figure du joueur choisi qui prend en paramètre l'emplacement choisi et la figure choisie par le joueur"""
     if choix == "1" :
         tab[0][0] = coup_Joueur
+        tabFictif[0][0] = coup_Joueur
     elif choix == "2" :
         tab[0][1] = coup_Joueur
+        tabFictif[0][1] = coup_Joueur
     elif choix == "3" :
         tab[0][2] = coup_Joueur
+        tabFictif[0][2] = coup_Joueur
     elif choix == "4" :
         tab[1][0] = coup_Joueur
+        tabFictif[1][0] = coup_Joueur
     elif choix == "5" :
         tab[1][1] = coup_Joueur
+        tabFictif[1][1] = coup_Joueur
     elif choix == "6" :
         tab[1][2] = coup_Joueur
+        tabFictif[1][2] = coup_Joueur
     elif choix == "7" :
         tab[2][0] = coup_Joueur
+        tabFictif[2][0] = coup_Joueur
     elif choix == "8" :
         tab[2][1] = coup_Joueur
+        tabFictif[2][1] = coup_Joueur
     elif choix == "9" :
         tab[2][2] = coup_Joueur
-    return printTab()
+        tabFictif[2][2] = coup_Joueur
+    return afficher()
     
 
 def Victoire():
@@ -61,27 +85,27 @@ def Victoire():
 
      # regarde les victoires en lignes horizontales. 
     for i in range(3):
-        if joueurPlay1 in tab[i] and joueurPlay2 in tab[i]:
+        if joueurPlay1 in tabFictif[i] and joueurPlay2 in tabFictif[i]:
             winTotale[i] = -1
-        elif '□' in tab[i]:
+        elif '□' in tabFictif[i] :
             pass
         else:
             winTotale[i] = tab[i][0]
 
     # regarde les victoires en lignes verticales. 
     for i in range(3):
-        if joueurPlay1 in [tab[j][i] for j in range(3)] and joueurPlay2 in [tab[j][i] for j in range(3)]:
+        if joueurPlay1 in [tabFictif[j][i] for j in range(3)] and joueurPlay2 in [tabFictif[j][i] for j in range(3)]:
             winTotale[i + 3] = -1
-        elif '□' in [tab[j][i] for j in range(3)]:
+        elif '□' in [tabFictif[j][i] for j in range(3)]:
             pass
         else:
             winTotale[i + 3] = tab[0][i]
 
     # regarde les victoires en lignes en diagonales. 
     for i in range(2):
-        if joueurPlay1 in [tab[j][(2 - j) * i - j * (i - 1)] for j in range(3)] and joueurPlay2 in [tab[j][(2 - j) * i - j * (i - 1)] for j in range(3)]:
+        if joueurPlay1 in [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)] and joueurPlay2 in [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)]:
             winTotale[i + 6] = -1
-        elif '□' in [tab[j][(2 - j) * i - j * (i - 1)] for j in range(3)]:
+        elif '□' in [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)]:
             pass
         else:
             winTotale[i + 6] = tab[0][i * 2]
@@ -105,15 +129,16 @@ def game():
 
     if robot == "False": 
         print("Vous avez choisi le mode multijoueur \n \n")
-        joueurPlay2 = input("Joueur 2 choississez la figure que vous voulez jouer : \n") #si pas robot alors le joueur 2 choisi la figure qu'il veut
-        while joueurPlay1 == joueurPlay2 :
+        joueurPlay2 = input("Joueur 2 choississez la figure que vous voulez jouer : ") #si pas robot alors le joueur 2 choisi la figure qu'il veut
+        print("\n")
+        while joueurPlay1 == joueurPlay2 or joueurPlay2 in [str(i) for i in range(1, 10)]:
             joueurPlay2 = input("Joueur 2 rechoississez la figure que vous voulez jouer : ")
             print("\n")
     
     else : 
          print("Vous avez choisi le mode contre L'IA \n \n")
 
-    printTab()
+    afficher()
     while len(alreadyPlay) < longueurTab:
 
         if robot == "False":
@@ -174,5 +199,4 @@ def game():
     print("Egalité")
     return 
             
-
 game()          
