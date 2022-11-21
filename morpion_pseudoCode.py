@@ -22,7 +22,8 @@
     # renvoyer tab
 
 # initialiser tab avec le retour de l'éxécution de la fonction tailleGrille de paramètre taille
-# initialiser à tabFictif un tableau de tableau rempli avec le charactère '□' par compréhension de longueur taille
+# initialiser de tabFictif un tableau de tableau rempli avec le charactère '□' par compréhension de longueur taille
+# initialiser de tabReussite un tableau rempli avec les emplacements jouables ## ["1", "2", "3", "4", "5", "6", "7", "8", "9", "123456789"]
 
 # initialiser longueurTab la longueur du tableau tab multiplier par la longueur du tableau tab
 # initialiser joueurPlay1 qui est le retour de l'éxécution de la fonction input de paramètre la figure choisie
@@ -32,7 +33,7 @@
 
 # initialiser joueurPlay2 qui est le retour de l'éxécution de la fonction choice de paramètre un tableau composé de l'alphabet en majuscule
 # initialiser alreadyPlay comme étant un tableau vide
-# initialiser firstPlayer qui est le retour de l'éxécution de la fonction choice de paramètre un tableau composé de 0 et 1
+# initialiser firstPlayer qui est le retour de l'éxécution de la fonction choice de paramètre un tableau composé de 1 et 2
 # afficher le joueur jouant en premier 
 
 # definir la fonction afficher
@@ -84,6 +85,14 @@
         #alors
         # assigner à la valeur de tab de coordonnées tab[2][2] la valeur de coup_Joueur
         # assigner à la valeur de tabFictif de coordonnées tab[2][2] la valeur de coup_Joueur
+    # si sinon choix vaut la str "123456789"
+        # alors
+        # pour i qui est le retour de l'éxécution de la fonction range de paramètres 3
+            # alors
+            # pour i qui est le retour de l'éxécution de la fonction range de paramètres 3
+                # alors
+                # assigner à la valeur de tab de coordonnées tab[i][j] la valeur de coup_Joueur
+                # assigner à la valeur de tabFictif de coordonnées tab[i][j] la valeur de coup_Joueur
     # renvoyer l'affichage du retour de l'éxécution de la fonction afficher
 
 
@@ -164,10 +173,10 @@
         # si robot vaut la str "False"
             # alors
             # utiliser la méthode .sleep de paramètre 0.3
-            # si firstPlayer vaut 0
+            # si firstPlayer vaut 1
                 # alors
                 # assigner à caseJoueurPlay1 le retour de l'éxécution de la fonction input de paramètre choisir l'endroit où l'on veut joueur
-                # tant que caseJoueurPlay1 dans alreadyPlay
+                # tant que caseJoueurPlay1 dans alreadyPlay ou si caseJoueurPlay1 n'est pas dans tableauReussite 
                     # alors  
                     # assigner à caseJoueurPlay1 le retour de l'éxécution de la fonction input de paramètre rechoisir l'endroit où l'on veut joueur
                 # incrémenter alreadyPlay grâce grace au retour de l'éxécution la méthode append de paramètre caseJoueurPlay1
@@ -175,10 +184,10 @@
                 # incrémenter de 1 firstPlayer
                 # assigner à coupJouer la variable caseJoueurPlay1
 
-            # si sinon firstPlayer vaut 1
+            # si sinon firstPlayer vaut 2
                 # alors
                 # assigner à caseJoueurPlay2 le retour de l'éxécution de la fonction input de paramètre choisir l'endroit où l'on veut joueur
-                # tant que caseJoueurPlay2 dans alreadyPlay
+                # tant que caseJoueurPlay2 dans alreadyPlay ou si caseJoueurPlay2 n'est pas dans tableauReussite 
                     # alors  
                     # assigner à caseJoueurPlay le retour de l'éxécution de la fonction input de paramètre rechoisir l'endroit où l'on veut joueur
                 # incrémenter alreadyPlay grâce grace au retour de l'éxécution la méthode append de paramètre caseJoueurPlay2
@@ -189,10 +198,10 @@
         # sinon 
             # alors
             # utiliser la méthode .sleep de paramètre 0.5
-            # si firstPlayer vaut 0
+            # si firstPlayer vaut 1
                 # alors
                 # assigner à caseJoueurPlay1 le retour de l'éxécution de la fonction input de paramètre choisir l'endroit où l'on veut joueur
-                # tant que caseJoueurPlay1 dans alreadyPlay
+                # tant que caseJoueurPlay1 dans alreadyPlay ou si caseJoueurPlay1 n'est pas dans tableauReussite 
                     # alors  
                     # assigner à caseJoueurPlay1 le retour de l'éxécution de la fonction input de paramètre rechoisir l'endroit où l'on veut joueur
                 # incrémenter alreadyPlay grâce grace au retour de l'éxécution la méthode append de paramètre caseJoueurPlay1
@@ -200,7 +209,7 @@
                 # incrémenter de 1 firstPlayer
                 # assigner à coupJouer la variable caseJoueurPlay1
             
-            # si sinon firstPlayer vaut la valeur 1
+            # si sinon firstPlayer vaut la valeur 2
                 # alors
                 # tant que choixRobot dans alreadyPlay
                     # alors

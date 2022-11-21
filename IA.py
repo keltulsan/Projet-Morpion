@@ -22,10 +22,21 @@ def tailleGrille(taille):
             cpt += 1
     return tab
 
+def position() :
+    tab = tailleGrille(taille)
+    cpt = 1
+    for i in range(3): 
+        for j in range(3):
+            tab[i][j] = str(cpt)
+            cpt += 1
+    return tab
+
 
 
 tab = tailleGrille(taille) 
 tabFictif = [['□' for i in range(taille)]for j in range(taille)]
+tableauReussite = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "123456789"]
+tableauPosition = position()
 
 longueurTab = len(tab)*len(tab)
 joueurPlay1 = input("Joueur 1 choississez la figure que vous voulez jouer : ")
@@ -35,8 +46,8 @@ while joueurPlay1 in [str(i) for i in range(1, 10)]:
 
 joueurPlay2 = choice(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]) # choix alea figure
 alreadyPlay = [] 
-firstPlayer = choice([0,1]) # choix du joueur qui commence
-print("Vous joueurez en " + str(firstPlayer) + " - - - - - [0 : Vous commencez et 1 : Vous jouerez en second]")
+firstPlayer = choice([1,2]) # choix du joueur qui commence
+print("Vous joueurez en " + str(firstPlayer) + " - - - - - [1 : Vous commencez et 2 : Vous jouerez en second]")
 
 def afficher():
     """ Affiche le plateau du morpion comme le vrai jeu"""
@@ -78,8 +89,13 @@ def emplacementJoueur (choix, coup_Joueur):
     elif choix == "9" :
         tab[2][2] = coup_Joueur
         tabFictif[2][2] = coup_Joueur
+    elif choix == "123456789" :
+        for i in range(3):
+            for j in range(3):
+                tab[i][j] = coup_Joueur
+                tabFictif[i][j] = coup_Joueur
     return afficher()
-    
+
 
 def Victoire():
     winTotale = [0 for i in range(8)] # [[789], [456], [123], [741], [852], [963], [753], [951]] #combinaison de win possible
@@ -119,15 +135,42 @@ def whoWin():
         if i == joueurPlay1 : 
             return print("Victoire du Joueur 1")
         elif i == joueurPlay2:
-            return print("Victoire du  Joueur 2")
-        else : 
-            pass
+            return print("Victoire du Joueur 2")
+
+def IA () :
+    cptJ1 = 0 # compteur de figures présentes du joueur
+    cptJ2 = 0 # compteur de figures présentes de l'IA
+    compteurNb = 0
+    choixIA = ""
+
+    for i in range(3): 
+        if joueurPlay1 in [tabFictif[i][j]for j in range(3)]:
+            cptJ1 +=1
+        if joueurPlay2 in [tabFictif[i][j]for j in range(3)]:
+            cptJ2 +=1
+        if cptJ1 == 2 or cptJ2 == 2:
+            print("oui")
+            for x in range(3):
+                if tabFictif[i][x] == '□' :
+                    print("oui1")
+                    choixIA = tableauPosition[i][x]
+                    print(choixIA)
+                    return str(choixIA) 
+    
+    choixAlea = str(randint(1,9))
+    while choixAlea in alreadyPlay :
+        choixAlea = str(randint(1,9))
+            
+
+    return str(choixAlea)
+
+    
+
 
 def game():
     global firstPlayer, joueurPlay2
     robot = input("Voulez vous jouer avec un bot ? [True or False] ")
     coupJouer = ""
-    choixRobot = str(randint(1, 9))
 
     if robot == "False": 
         print("Vous avez choisi le mode multijoueur \n \n")
@@ -145,10 +188,10 @@ def game():
 
         if robot == "False":
             time.sleep(0.3)
-            if firstPlayer == 0 :
+            if firstPlayer == 1 :
                 caseJoueurPlay1 = input("Joueur 1 faite votre choix pour jouer : ") 
                 print("\n")
-                while caseJoueurPlay1 in alreadyPlay:
+                while caseJoueurPlay1 in alreadyPlay or not caseJoueurPlay1 in tableauReussite :
                     caseJoueurPlay1 = input("Joueur 1 refaite votre choix pour jouer : ")
                     print("\n")
                 alreadyPlay.append(caseJoueurPlay1)
@@ -156,10 +199,10 @@ def game():
                 firstPlayer +=1 #modifie le joueur qui va commencer 
                 coupJouer = caseJoueurPlay1
                 
-            elif firstPlayer == 1 :
+            elif firstPlayer == 2 :
                 caseJoueurPlay2 =  input("Joueur 2 faite votre choix pour jouer : ")
                 print("\n")
-                while caseJoueurPlay2 in alreadyPlay:
+                while caseJoueurPlay2 in alreadyPlay or not caseJoueurPlay2 in tableauReussite :
                     caseJoueurPlay2 = input("Joueur 2 refaite votre choix pour jouer : ")
                     print("\n")
                 alreadyPlay.append(caseJoueurPlay2)
@@ -169,22 +212,27 @@ def game():
 
         else :
             time.sleep(0.5)
-            if firstPlayer == 0 :
+            if firstPlayer == 1 :
                 caseJoueurPlay1 = input("Joueur 1 faite votre choix pour jouer : ") 
                 print("\n")
-                while caseJoueurPlay1 in alreadyPlay:
+                while caseJoueurPlay1 in alreadyPlay or not caseJoueurPlay1 in tableauReussite :
                     caseJoueurPlay1 = input("Joueur 1 refaite votre choix pour jouer : ")
                     print("\n")
                 alreadyPlay.append(caseJoueurPlay1)
+                print(alreadyPlay)
+                print(tableauPosition)
                 emplacementJoueur(caseJoueurPlay1, joueurPlay1) 
+                print(tabFictif)
                 firstPlayer +=1 #modifie le joueur qui va commencer 
                 coupJouer = caseJoueurPlay1
 
-            elif firstPlayer == 1 :   
-                while choixRobot in alreadyPlay:
-                    choixRobot = str(randint(1, 9)) 
-                alreadyPlay.append(choixRobot)   
+            elif firstPlayer == 2 :  
+                choixRobot = IA() 
+                alreadyPlay.append(choixRobot)
+                print(alreadyPlay)
+                print(tableauPosition)
                 emplacementJoueur(choixRobot, joueurPlay2) 
+                print(tabFictif)
                 firstPlayer -= 1 #modifie le joueur qui va commencer 
                 coupJouer = choixRobot
 
@@ -193,7 +241,6 @@ def game():
         
         
 
-            
         if joueurPlay1 in Victoire() or joueurPlay2 in Victoire() : # si un joueur a gagné renvoie le victorieux ou si toutes les cases ont étaient prises renvoie égalité
             return whoWin()
 
@@ -201,46 +248,9 @@ def game():
     print("Egalité")
     return 
             
-game()          
+game() 
 
 
-
-def IA () :
-    # gagner ou égalité
-    cptD = 0 # compteur figure joueur présent
-    cptW = 0 # compteur figure IA présent
-
-    # ligne
-    for i in range(3):
-        if joueurPlay1 in tabFictif[i] :
-            cptD += 1
-    for i in range(3):
-        if joueurPlay2 in tabFictif[i] :
-            cptW += 1
-    if cptD == 2 or cptW == 2 :
-        # le robot se place à l'endroit qu'il reste soit pout bloquer soit pout gagner
-                    
-    #colonne 
-    for i in range(3):
-        if joueurPlay1 in [tabFictif[j][i] for j in range(3)]:
-                cptD += 1
-    for i in range(3):
-        if joueurPlay2 in [tabFictif[j][i] for j in range(3)] :
-            cptW += 1
-    if cptD == 2 or cptW == 2 :
-        # le robot se place à l'endroit qu'il reste soit pout bloquer soit pout gagner
-
-    #diagonale
-    for i in range(3):
-        if joueurPlay1 in [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)] :
-            cptD += 1
-    for i in range(3):
-        if joueurPlay2 in [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)] :
-            cptW += 1
-
-    if cptD == 2 or cptW == 2 :
-        # le robot se place à l'endroit qu'il reste soit pout bloquer soit pout gagner
 
 
     
-
