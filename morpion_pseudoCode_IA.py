@@ -166,6 +166,147 @@
             # alors
             # renvoyer l'affichage "Victoire du joueur 2"
 
+#définir la fonction IA
+    #assigner à cptJ1 la valeur 0
+    #assigner à cptJ2 la valeur 0
+    #initialiser choixIA en lui attribuant une valeur vide
+
+'''regarder dans les lignes si l'un des deux joueur a 2 fois sont symboles'''
+    #pour i dans le retour de l'éxécution de la fonction range de paramètre 3
+        #attribuer à cptJ2 le retour de l'execution de la fonction count de parametre joueurPlay2 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice i et j
+        #pour j dans le retour de l'execution de la fonction range de parametre 3
+        #si cptJ2 est égal à 2
+            #alors
+            #pour x dans le retour de l'éxécution de la fonction range de paramètre 3
+                #si la valeur de tabFictif d'indices i et x vaut "□"
+                    #alors
+                    #attribuer à choixIA la valeur de tableauPosition d'indices i et x
+                    #retourner la chaine de caractere de choixIA
+                
+    #pour i dans le retour de l'éxécution de la fonction range de paramètre 3
+        #attribuer à cptJ1 le retour de l'execution de la fonction count de parametre joueurPlay1 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice i et j
+        #pour j dans le retour de l'execution de la fonction range de parametre 3
+        #si cptJ1 est égal à 2
+            #alors
+            #pour x dans le retour de l'éxécution de la fonction range de paramètre 3
+                #si la valeur de tabFictif d'indices i et x vaut "□"
+                    #alors
+                    #attribuer à choixIA la valeur de tableauPosition d'indices i et x
+                    #retourner la chaine de caractere de choixIA
+
+'''regarder dans les colonnes si l'un des deux joueur a 2 fois sont symboles'''
+    #pour i dans le retour de l'éxécution de la fonction range de paramètre 3
+        #attribuer à cptJ2 le retour de l'execution de la fonction count de parametre joueurPlay2 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice j et i
+        #pour j dans le retour de l'execution de la fonction range de parametre 3
+        #si cptJ2 est égal à 2
+            #alors
+            #pour x dans le retour de l'éxécution de la fonction range de paramètre 3
+                #si la valeur de tabFictif d'indices x et i vaut "□"
+                    #alors
+                    #attribuer à choixIA la valeur de tableauPosition d'indices x et i
+                    #retourner la chaine de caractere de choixIA
+
+    #pour i dans le retour de l'éxécution de la fonction range de paramètre 3
+        #attribuer à cptJ1 le retour de l'execution de la fonction count de parametre joueurPlay1 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice j et i
+        #pour j dans le retour de l'execution de la fonction range de parametre 3
+        #si cptJ1 est égal à 2
+            #alors
+            #pour x dans le retour de l'éxécution de la fonction range de paramètre 3
+                #si la valeur de tabFictif d'indices x et i vaut "□"
+                    #alors
+                    #attribuer à choixIA la valeur de tableauPosition d'indices x et i
+                    #retourner la chaine de caractere de choixIA
+
+'''regarder dans les diagonales si l'un des deux joueur a 2 fois sont symboles'''
+    #pour i dans le retour de l'éxécution de la fonction range de paramètre 2
+        #attribuer à cptJ2 le retour de l'execution de la fonction count de parametre joueurPlay2 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice j et (2 - j) * i - j * (i - 1)
+        #pour j dans le retour de l'execution de la fonction range de parametre 3
+        #si cptJ2 est égal à 2
+            #alors
+            #pour x dans le retour de l'éxécution de la fonction range de paramètre 3
+                #si la valeur de tabFictif d'indices x et (2 - x) * i - x * (i - 1) vaut "□"
+                    #alors
+                    #attribuer à choixIA la valeur de tableauPosition d'indices x et (2 - x) * i - x * (i - 1)
+                    #retourner la chaine de caractere de choixIA
+
+     #pour i dans le retour de l'éxécution de la fonction range de paramètre 2
+        #attribuer à cptJ1 le retour de l'execution de la fonction count de parametre joueurPlay1 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice j et (2 - j) * i - j * (i - 1)
+        #pour j dans le retour de l'execution de la fonction range de parametre 3
+        #si cptJ1 est égal à 2
+            #alors
+            #pour x dans le retour de l'éxécution de la fonction range de paramètre 3
+                #si la valeur de tabFictif d'indices x et (2 - x) * i - x * (i - 1) vaut "□"
+                    #alors
+                    #attribuer à choixIA la valeur de tableauPosition d'indices x et (2 - x) * i - x * (i - 1)
+                    #retourner la chaine de caractere de choixIA
+
+'''regarder dans les lignes si l'IA à son symbole présent une seule fois et le joueur n'a aucun symbole sur la ligne alors l'IA se mettra à coté de son symbole déjà présent'''
+    #pour i dans le retour de l'éxécution de la fonction range de paramètre 3
+        #attribuer à cptJ1 le retour de l'execution de la fonction count de parametre joueurPlay1 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice i et j
+        #pour j dans le retour de l'execution de la fonction range de parametre 3
+        #attribuer à cptJ2 le retour de l'execution de la fonction count de parametre joueurPlay2 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice i et j
+        #pour j dans le retour de l'execution de la fonction range de parametre 3
+        #si cptJ2 est égal à 1 et cptJ1 est égal à 0
+            #alors
+            #pour x dans le retour de l'éxécution de la fonction range de paramètre 3
+                #si la valeur de tabFictif d'indices i et x vaut "□"
+                    #alors
+                    #attribuer à choixIA la valeur de tableauPosition d'indices i et x
+                    #retourner la chaine de caractere de choixIA
+
+'''regarder dans les colonnes si l'IA à son symbole présent une seule fois et le joueur n'a aucun symbole sur la ligne'''
+    #pour i dans le retour de l'éxécution de la fonction range de paramètre 3
+        #attribuer à cptJ1 le retour de l'execution de la fonction count de parametre joueurPlay1 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice j et i
+        #pour j dans le retour de l'execution de la fonction range de parametre 3
+        #attribuer à cptJ2 le retour de l'execution de la fonction count de parametre joueurPlay2 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice j et i
+        #pour j dans le retour de l'execution de la fonction range de parametre 3
+        #si cptJ2 est égal à 1 et cptJ1 est égal à 0
+            #alors
+            #pour x dans le retour de l'éxécution de la fonction range de paramètre 3
+                #si la valeur de tabFictif d'indices x et i vaut "□"
+                    #alors
+                    #attribuer à choixIA la valeur de tableauPosition d'indices x et i
+                    #retourner la chaine de caractere de choixIA
+
+'''regarder dans les colonnes si l'IA à son symbole présent une seule fois et le joueur n'a aucun symbole sur la ligne'''
+    #pour i dans le retour de l'éxécution de la fonction range de paramètre 2
+        #attribuer à cptJ1 le retour de l'execution de la fonction count de parametre joueurPlay1 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice j et (2 - j) * i - j * (i - 1)
+        #pour j dans le retour de l'execution de la fonction range de parametre 3
+        #attribuer à cptJ2 le retour de l'execution de la fonction count de parametre joueurPlay2 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice j et (2 - j) * i - j * (i - 1)
+        #pour j dans le retour de l'execution de la fonction range de parametre 3
+        #si cptJ2 est égal à 1 et cptJ1 est égal à 0
+            #alors
+            #pour x dans le retour de l'éxécution de la fonction range de paramètre 3
+                #si la valeur de tabFictif d'indices x et (2 - x) * i - x * (i - 1) vaut "□"
+                    #alors
+                    #attribuer à choixIA la valeur de tableauPosition d'indices x et (2 - x) * i - x * (i - 1)
+                    #retourner la chaine de caractere de choixIA
+
+'''regarder si le centre est libre sinon si les coins sont libres'''
+    #si la valeur de tabFictif d'indices 1 et 1 vaut "□"
+        #alors
+        #attribuer à choixIA la valeur de tableauPosition d'inidices 1 et 1
+        #retourner la chaine de caractere de choixIA
+    #sinon
+        #alors
+        #si la valeur de tabFictif d'indices 0 et 0 vaut "□"
+            #alors
+            #attribuer à choixIA la valeur de tableauPosition d'inidices 0 et 0
+            #retourner la chaine de caractere de choixIA
+        #sinon si la valeur de tabFictif d'indices 0 et 2 vaut "□"
+            #alors
+            #attribuer à choixIA la valeur de tableauPosition d'inidices 0 et 2
+            #retourner la chaine de caractere de choixIA
+        #sinon si la valeur de tabFictif d'indices 2 et 0 vaut "□"
+            #alors
+            #attribuer à choixIA la valeur de tableauPosition d'inidices 2 et 0
+            #retourner la chaine de caractere de choixIA
+        #sinon si la valeur de tabFictif d'indices 2 et 2 vaut "□"
+            #alors
+            #attribuer à choixIA la valeur de tableauPosition d'inidices 2 et 2
+            #retourner la chaine de caractere de choixIA
+            
+
 # definir la fonction game
     # appelle de global avec les variables firstPlayer et joueurPlay2
     # initialisation de robot qui est le retour de l'éxécution de la fonction input "voulez vous joueur avec un bot ? [True or FAlse]"
@@ -231,9 +372,7 @@
             
             # si sinon firstPlayer vaut la valeur 2
                 # alors
-                # tant que choixRobot dans alreadyPlay
-                    # alors
-                    # assigner à choixRobot le retour de l'éxécution de la fonction randint de paramètre 1, 9 etant un str
+                # assigner à choixRobot le retour de l'éxécution de la fontion IA
                 # incrémenter alreadyPlay avec le retour de l'éxécution la méthode append de paramètre choixRobot
                 # utiliser la fonction amplacementJoueur de paramètre choixRobot et joueurPlay2
                 # incrémenter de -1 firstPlayer

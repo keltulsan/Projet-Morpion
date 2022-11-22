@@ -1,16 +1,12 @@
-
-
 from random import *
 import os
 import time
 
-
-
 command = 'cls' #for windows
 os.system(command)
 
-
 taille = 3
+
 
 def tailleGrille(taille):
     """créer tableau de tableau de longueur rentré par l'utilisateur"""
@@ -22,6 +18,7 @@ def tailleGrille(taille):
             cpt += 1
     return tab
 
+
 def position() :
     tab = tailleGrille(taille)
     cpt = 1
@@ -30,8 +27,6 @@ def position() :
             tab[i][j] = str(cpt)
             cpt += 1
     return tab
-
-
 
 tab = tailleGrille(taille) 
 tabFictif = [['□' for i in range(taille)]for j in range(taille)]
@@ -51,6 +46,7 @@ if joueurPlay2 == joueurPlay1 :
 alreadyPlay = [] 
 firstPlayer = choice([1,2]) # choix du joueur qui commence
 print("Vous joueurez en " + str(firstPlayer) + " - - - - - [1 : Vous commencez et 2 : Vous jouerez en second]")
+
 
 def afficher():
     """ Affiche le plateau du morpion comme le vrai jeu"""
@@ -103,7 +99,6 @@ def emplacementJoueur (choix, coup_Joueur):
 def Victoire():
     winTotale = [0 for i in range(8)] # [[789], [456], [123], [741], [852], [963], [753], [951]] #combinaison de win possible
                                       # [  0,     0,     0,     0,     0,     0,     0,     0  ]
-
      # regarde les victoires en lignes horizontales. 
     for i in range(3):
         if joueurPlay1 in tabFictif[i] and joueurPlay2 in tabFictif[i]:
@@ -130,17 +125,15 @@ def Victoire():
             pass
         else:
             winTotale[i + 6] = tab[0][i * 2]
-
     return winTotale
         
+
 def whoWin():
     for i in Victoire() :
         if i == joueurPlay1 : 
             return print("Victoire du Joueur 1")
         elif i == joueurPlay2:
             return print("Victoire du Joueur 2")
-
-    
 
 
 def game():
@@ -159,11 +152,13 @@ def game():
     
     else : 
          print("Vous avez choisi le mode contre L'IA \n \n")
-
     afficher()
-    while len(alreadyPlay) < longueurTab:
 
+    while len(alreadyPlay) < longueurTab:
         if robot == "False":
+            if "1" in alreadyPlay and "3" in alreadyPlay and "7" in alreadyPlay and "8" in alreadyPlay and "9" in alreadyPlay and not "2" in alreadyPlay and not "4" in alreadyPlay and not "5" in alreadyPlay and not "6" in alreadyPlay :
+                smile =  " :-) "      
+                return print(smile)
             time.sleep(0.3)
             if firstPlayer == 1 :
                 caseJoueurPlay1 = input("Joueur 1 faite votre choix pour jouer : ") 
@@ -213,18 +208,10 @@ def game():
         print("La position " + str(coupJouer) + " a été selectionnée \n")
         time.sleep(0.5) 
         
-        
-
         if joueurPlay1 in Victoire() or joueurPlay2 in Victoire() : # si un joueur a gagné renvoie le victorieux ou si toutes les cases ont étaient prises renvoie égalité
             return whoWin()
-
 
     print("Egalité")
     return 
             
 game() 
-
-
-
-
-    

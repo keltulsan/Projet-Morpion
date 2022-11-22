@@ -1,14 +1,9 @@
-
-
 from random import *
 import os
 import time
 
-
-
 command = 'cls' #for windows
 os.system(command)
-
 
 taille = 3
 
@@ -31,8 +26,6 @@ def position() :
             cpt += 1
     return tab
 
-
-
 tab = tailleGrille(taille) 
 tabFictif = [['□' for i in range(taille)]for j in range(taille)]
 tableauReussite = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "123456789"]
@@ -51,6 +44,7 @@ if joueurPlay2 == joueurPlay1 :
 alreadyPlay = [] 
 firstPlayer = choice([1,2]) # choix du joueur qui commence
 print("Vous joueurez en " + str(firstPlayer) + " - - - - - [1 : Vous commencez et 2 : Vous jouerez en second]")
+
 
 def afficher():
     """ Affiche le plateau du morpion comme le vrai jeu"""
@@ -103,7 +97,6 @@ def emplacementJoueur (choix, coup_Joueur):
 def Victoire():
     winTotale = [0 for i in range(8)] # [[789], [456], [123], [741], [852], [963], [753], [951]] #combinaison de win possible
                                       # [  0,     0,     0,     0,     0,     0,     0,     0  ]
-
      # regarde les victoires en lignes horizontales. 
     for i in range(3):
         if joueurPlay1 in tabFictif[i] and joueurPlay2 in tabFictif[i]:
@@ -130,15 +123,16 @@ def Victoire():
             pass
         else:
             winTotale[i + 6] = tab[0][i * 2]
-
     return winTotale
         
+
 def whoWin():
     for i in Victoire() :
         if i == joueurPlay1 : 
             return print("Victoire du Joueur 1")
         elif i == joueurPlay2:
             return print("Victoire du Joueur 2")
+
 
 def IA () :
     cptJ1 = 0 # compteur de figures présentes du joueur
@@ -161,9 +155,6 @@ def IA () :
                     choixIA = tableauPosition[i][x]
                     return str(choixIA)
         
-
-    print("\n") 
-    
     # regarde dans les colonnes si l'un des deux joueur a 2 fois sont symboles
     for i in range(3):
         cptJ2 = [tabFictif[j][i]for j in range(3)].count(joueurPlay2)
@@ -179,12 +170,9 @@ def IA () :
                 if tabFictif[x][i] == '□' :
                     choixIA = tableauPosition[x][i]
                     return str(choixIA)
-    
-    print("\n")  
-
+     
     # regarde dans les diagonales si l'un des deux joueur a 2 fois sont symboles
     for i in range(2):
-        cptJ1 = [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)].count(joueurPlay1)
         cptJ2 = [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)].count(joueurPlay2)
         if cptJ2 == 2:
             for x in range(3):
@@ -198,8 +186,9 @@ def IA () :
                 if tabFictif[x][(2 - x) * i - x * (i - 1)] == '□' : #regarde quel caractère est '□'
                     choixIA = tableauPosition[x][(2 - x) * i - x * (i - 1)] # donne la position du caratère '□' dans le tableau
                     return str(choixIA)
-    print("\n") 
 
+    # regarde dans les lignes si l'IA a son symbole présent une seule fois et que le joueur n'est aucun symbole sur la ligne 
+    # alors l'IA se mettra à coté de son symbole déjà présent
     for i in range(3):     
         cptJ2 = [tabFictif[i][j]for j in range(3)].count(joueurPlay2)
         cptJ1 = [tabFictif[i][j]for j in range(3)].count(joueurPlay1)
@@ -209,31 +198,34 @@ def IA () :
                     choixIA = tableauPosition[i][x]
                     return str(choixIA)
 
-
+    # regarde dans les colonnes si l'IA a son symbole présent une seule fois et que le joueur n'est aucun symbole sur la ligne 
+    # alors l'IA se mettra à coté de son symbole déjà présent
     for i in range(3):     
-            cptJ2 = [tabFictif[j][i]for j in range(3)].count(joueurPlay2)
-            cptJ1 = [tabFictif[j][i]for j in range(3)].count(joueurPlay1)
-            if cptJ2 == 1 and cptJ1 == 0:
-                for x in range(3):
-                    if tabFictif[x][i] == '□' :
-                        choixIA = tableauPosition[x][i]
-                        return str(choixIA)
+        cptJ2 = [tabFictif[j][i]for j in range(3)].count(joueurPlay2)
+        cptJ1 = [tabFictif[j][i]for j in range(3)].count(joueurPlay1)
+        if cptJ2 == 1 and cptJ1 == 0:
+            for x in range(3):
+                if tabFictif[x][i] == '□' :
+                    choixIA = tableauPosition[x][i]
+                    return str(choixIA)
 
+    # regarde dans les diagonales si l'IA a son symbole présent une seule fois et que le joueur n'est aucun symbole sur la ligne 
+    # alors l'IA se mettra à coté de son symbole déjà présent
     for i in range(2):
-            cptJ1 = [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)].count(joueurPlay1)
-            cptJ2 = [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)].count(joueurPlay2)
-            if cptJ2 == 1 and cptJ1 == 0:
-                for x in range(3):
-                    if tabFictif[x][(2 - x) * i - x * (i - 1)] == '□' : #regarde quel caractère est '□'
-                        choixIA = tableauPosition[x][(2 - x) * i - x * (i - 1)] # donne la position du caratère '□' dans le tableau
-                        return str(choixIA)
+        cptJ1 = [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)].count(joueurPlay1)
+        cptJ2 = [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)].count(joueurPlay2)
+        if cptJ2 == 1 and cptJ1 == 0:
+            for x in range(3):
+                if tabFictif[x][(2 - x) * i - x * (i - 1)] == '□' : #regarde quel caractère est '□'
+                    choixIA = tableauPosition[x][(2 - x) * i - x * (i - 1)] # donne la position du caratère '□' dans le tableau
+                    return str(choixIA)
 
-
-
-    if tabFictif[1][1] == '□' : # si le centre est libre l'IA se met au centre
+    # si le centre est libre l'IA se met au centre
+    if tabFictif[1][1] == '□' : 
         choixIA = tableauPosition[1][1] 
         return str(choixIA)
     else :
+        # sinon elle se met dans l'un des coins
         if tabFictif[0][0] == '□':
             choixIA = tableauPosition[0][0] 
             return str(choixIA)
@@ -246,9 +238,7 @@ def IA () :
         elif tabFictif[2][2] == '□':
             choixIA = tableauPosition[2][2] 
             return str(choixIA)
-
     
-
 
 def game():
     global firstPlayer, joueurPlay2
@@ -265,10 +255,9 @@ def game():
     
     else : 
          print("Vous avez choisi le mode contre L'IA \n \n")
-
     afficher()
-    while len(alreadyPlay) < longueurTab:
 
+    while len(alreadyPlay) < longueurTab:
         if robot == "False":
             time.sleep(0.3)
             if firstPlayer == 1 :
@@ -281,7 +270,7 @@ def game():
                 emplacementJoueur(caseJoueurPlay1, joueurPlay1 ) 
                 firstPlayer +=1 #modifie le joueur qui va commencer 
                 coupJouer = caseJoueurPlay1
-                
+
             elif firstPlayer == 2 :
                 caseJoueurPlay2 =  input("Joueur 2 faite votre choix pour jouer : ")
                 print("\n")
@@ -314,22 +303,13 @@ def game():
                 print(tabFictif)
                 firstPlayer -= 1 #modifie le joueur qui va commencer 
                 coupJouer = choixRobot
-
         print("La position " + str(coupJouer) + " a été selectionnée \n")
         time.sleep(0.5) 
-        
-        
 
         if joueurPlay1 in Victoire() or joueurPlay2 in Victoire() : # si un joueur a gagné renvoie le victorieux ou si toutes les cases ont étaient prises renvoie égalité
             return whoWin()
-
 
     print("Egalité")
     return 
             
 game() 
-
-
-
-
-    
