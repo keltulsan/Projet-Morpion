@@ -39,7 +39,7 @@ while not joueurPlay1 in ["O", "X"]:
 
 joueurPlay2 = choice(["O", "X"]) # choix alea figure
 if joueurPlay2 == joueurPlay1 :
-    joueurPlay2 = choice(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
+    joueurPlay2 = choice(["O", "X"])
 
 alreadyPlay = [] 
 firstPlayer = choice([1,2]) # choix du joueur qui commence
