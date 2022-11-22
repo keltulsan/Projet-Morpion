@@ -45,6 +45,9 @@ while joueurPlay1 in [str(i) for i in range(1, 10)]:
     joueurPlay1 = input("Joueur 1 rechoississez la figure que vous voulez jouer : ")
 
 joueurPlay2 = choice(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]) # choix alea figure
+if joueurPlay2 == joueurPlay1 :
+    joueurPlay2 = choice(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
+
 alreadyPlay = [] 
 firstPlayer = choice([1,2]) # choix du joueur qui commence
 print("Vous joueurez en " + str(firstPlayer) + " - - - - - [1 : Vous commencez et 2 : Vous jouerez en second]")
@@ -143,19 +146,56 @@ def IA () :
     compteurNb = 0
     choixIA = ""
 
-    for i in range(3): 
-        if joueurPlay1 in [tabFictif[i][j]for j in range(3)]:
-            cptJ1 +=1
-        if joueurPlay2 in [tabFictif[i][j]for j in range(3)]:
-            cptJ2 +=1
+    # regarde dans les lignes si l'un des deux joueur a 2 fois sont symboles
+    for i in range(3):
+        cptJ1 = [tabFictif[i][j]for j in range(3)].count(joueurPlay1)
+        cptJ2 = [tabFictif[i][j]for j in range(3)].count(joueurPlay2)
+        print("cptj1 " + str(cptJ1))
+        print("cptj2 " + str(cptJ2))
         if cptJ1 == 2 or cptJ2 == 2:
             print("oui")
             for x in range(3):
                 if tabFictif[i][x] == '□' :
                     print("oui1")
                     choixIA = tableauPosition[i][x]
-                    print(choixIA)
-                    return str(choixIA) 
+                    print("choix IA" + str(choixIA))
+                    return print("choix IA " +str(choixIA) )
+    print("\n") 
+    
+    # regarde dans les colonnes si l'un des deux joueur a 2 fois sont symboles
+    for i in range(3):
+        cptJ1 = [tabFictif[j][i]for j in range(3)].count(joueurPlay1)
+        cptJ2 = [tabFictif[j][i]for j in range(3)].count(joueurPlay2)
+        print("cptj1 " + str(cptJ1))
+        print("cptj2 " + str(cptJ2))
+        if cptJ1 == 2 or cptJ2 == 2:
+            print("oui")
+            for x in range(3):
+                if tabFictif[x][i] == '□' :
+                    print("oui1")
+                    choixIA = tableauPosition[x][i]
+                    print("choix IA " + str(choixIA))
+                    return str(choixIA)
+    print("\n")  
+
+    # regarde dans les diagonales si l'un des deux joueur a 2 fois sont symboles
+    for i in range(2):
+        cptJ1 = [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)].count(joueurPlay1)
+        cptJ2 = [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)].count(joueurPlay2)
+        print("cptj1 " + str(cptJ1))
+        print("cptj2 " + str(cptJ2))
+        if cptJ1 == 2 or cptJ2 == 2:
+            print("oui")
+            for x in range(3):
+                if tabFictif[x][(2 - x) * i - x * (i - 1)] == '□' : #regarde quel caractère est '□'
+                    print("oui1")
+                    choixIA = tableauPosition[x][(2 - x) * i - x * (i - 1)] # donne la position du caratère '□' dans le tableau
+                    print("choix IA " + str(choixIA))
+                    return str(choixIA)
+    print("\n") 
+
+
+
     
     choixAlea = str(randint(1,9))
     while choixAlea in alreadyPlay :

@@ -32,6 +32,10 @@
     # on assigne a joueurPlay1 le retour de l'éxécution de la fonction input de paramètre la figure choisie de nouveau
 
 # initialiser joueurPlay2 qui est le retour de l'éxécution de la fonction choice de paramètre un tableau composé de l'alphabet en majuscule
+# si joueurPlay2 vaut joueurPlay1 :
+    # alors
+    # asigner joueurPlay2 qui est le retour de l'éxécution de la fonction choice de paramètre un tableau composé de l'alphabet en majuscule
+
 # initialiser alreadyPlay comme étant un tableau vide
 # initialiser firstPlayer qui est le retour de l'éxécution de la fonction choice de paramètre un tableau composé de 1 et 2
 # afficher le joueur jouant en premier 
