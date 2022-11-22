@@ -292,7 +292,6 @@ def game():
                     print("\n")
                 alreadyPlay.append(caseJoueurPlay1)
                 emplacementJoueur(caseJoueurPlay1, joueurPlay1) 
-                print(tabFictif)
                 firstPlayer +=1 #modifie le joueur qui va commencer 
                 coupJouer = caseJoueurPlay1
 
@@ -300,7 +299,6 @@ def game():
                 choixRobot = IA() 
                 alreadyPlay.append(choixRobot)
                 emplacementJoueur(choixRobot, joueurPlay2) 
-                print(tabFictif)
                 firstPlayer -= 1 #modifie le joueur qui va commencer 
                 coupJouer = choixRobot
         print("La position " + str(coupJouer) + " a été selectionnée \n")
