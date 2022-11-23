@@ -31,6 +31,9 @@ tabFictif = [['□' for i in range(taille)]for j in range(taille)]
 tableauReussite = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "123456789"]
 tableauPosition = position()
 
+password = "Ichiban tsuyoi"
+easterEgg = "Hard"  
+
 longueurTab = len(tab)*len(tab)
 joueurPlay1 = input("Joueur 1 choississez la figure que vous voulez jouer : ")
 
@@ -134,10 +137,11 @@ def whoWin():
             return print("Victoire du Joueur 2")
 
 
-def IA () :
+def IA (dificultie) :
     cptJ1 = 0 # compteur de figures présentes du joueur
     cptJ2 = 0 # compteur de figures présentes de l'IA
     choixIA = ""
+    mot = ""
 
     # regarde dans les lignes si l'un des deux joueur a 2 fois sont symboles
     for i in range(3):     
@@ -145,6 +149,10 @@ def IA () :
         if cptJ2 == 2:
             for x in range(3):
                 if tabFictif[i][x] == '□' :
+                    if dificultie == "Hard" :
+                        mot = input(("Entrer le mot de passe : "))
+                        if mot == password:
+                            return 
                     choixIA = tableauPosition[i][x]
                     return str(choixIA)
     for i in range(3): 
@@ -161,6 +169,10 @@ def IA () :
         if cptJ2 == 2:
             for x in range(3):
                 if tabFictif[x][i] == '□' :
+                    if dificultie == "Hard" :
+                        mot = input(("Entrer le mot de passe : "))
+                        if mot == password:
+                            return
                     choixIA = tableauPosition[x][i]
                     return str(choixIA)
     for i in range(3):
@@ -177,6 +189,10 @@ def IA () :
         if cptJ2 == 2:
             for x in range(3):
                 if tabFictif[x][(2 - x) * i - x * (i - 1)] == '□' : #regarde quel caractère est '□'
+                    if dificultie == "Hard" :
+                        mot = input(("Entrer le mot de passe : "))
+                        if mot == password:
+                            return 
                     choixIA = tableauPosition[x][(2 - x) * i - x * (i - 1)] # donne la position du caratère '□' dans le tableau
                     return str(choixIA)
     for i in range(2):
@@ -239,6 +255,7 @@ def IA () :
             choixIA = tableauPosition[2][2] 
             return str(choixIA)
     
+    
 
 def game():
     global firstPlayer, joueurPlay2
@@ -296,7 +313,7 @@ def game():
                 coupJouer = caseJoueurPlay1
 
             elif firstPlayer == 2 :  
-                choixRobot = IA() 
+                choixRobot = IA("") # esterEgg
                 alreadyPlay.append(choixRobot)
                 emplacementJoueur(choixRobot, joueurPlay2) 
                 firstPlayer -= 1 #modifie le joueur qui va commencer 
@@ -309,5 +326,5 @@ def game():
 
     print("Egalité")
     return 
-            
+        
 game() 

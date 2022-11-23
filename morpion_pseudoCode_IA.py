@@ -36,6 +36,9 @@
 # initialiser de tabFictif un tableau de tableau rempli avec le charactère '□' par compréhension de longueur taille ##[['□' for i in range(taille)]for j in range(taille)] 
 # initialiser de tabReussite un tableau rempli avec les emplacements jouables ## ["1", "2", "3", "4", "5", "6", "7", "8", "9", "123456789"]
 
+# initialiser password qui vaut la str "Ichiban tsuyoi"
+# initialiser easterEgg qui vaut la str "Hard"
+
 # initialiser longueurTab la longueur du tableau tab multiplier par la longueur du tableau tab
 # initialiser joueurPlay1 qui est le retour de l'éxécution de la fonction input de paramètre la figure choisie
 
@@ -166,10 +169,11 @@
             # alors
             # renvoyer l'affichage "Victoire du joueur 2"
 
-#définir la fonction IA
+#définir la fonction IA de paramètre dificultie
     #assigner à cptJ1 la valeur 0
     #assigner à cptJ2 la valeur 0
     #initialiser choixIA en lui attribuant une valeur vide
+    #initialiser mot qui vaut un mot vide
 
 '''regarder dans les lignes si l'un des deux joueur a 2 fois sont symboles'''
     #pour i dans le retour de l'éxécution de la fonction range de paramètre 3
@@ -180,6 +184,12 @@
             #pour x dans le retour de l'éxécution de la fonction range de paramètre 3
                 #si la valeur de tabFictif d'indices i et x vaut "□"
                     #alors
+                    # si dificultie vaut la str "Hard" 
+                        # alors 
+                        # assigner à mot le retour de l'éxécution de la fonction input de paramètre le mot de passe
+                        # si mot est égale à password
+                            # alors
+                            # renvoyer    
                     #attribuer à choixIA la valeur de tableauPosition d'indices i et x
                     #retourner la chaine de caractere de choixIA
                 
@@ -203,6 +213,12 @@
             #pour x dans le retour de l'éxécution de la fonction range de paramètre 3
                 #si la valeur de tabFictif d'indices x et i vaut "□"
                     #alors
+                    # si dificultie vaut la str "Hard" 
+                        # alors 
+                        # assigner à mot le retour de l'éxécution de la fonction input de paramètre le mot de passe
+                        # si mot est égale à password
+                            # alors
+                            # renvoyer    
                     #attribuer à choixIA la valeur de tableauPosition d'indices x et i
                     #retourner la chaine de caractere de choixIA
 
@@ -226,6 +242,12 @@
             #pour x dans le retour de l'éxécution de la fonction range de paramètre 3
                 #si la valeur de tabFictif d'indices x et (2 - x) * i - x * (i - 1) vaut "□"
                     #alors
+                    # si dificultie vaut la str "Hard" 
+                        # alors 
+                        # assigner à mot le retour de l'éxécution de la fonction input de paramètre le mot de passe
+                        # si mot est égale à password
+                            # alors
+                            # renvoyer    
                     #attribuer à choixIA la valeur de tableauPosition d'indices x et (2 - x) * i - x * (i - 1)
                     #retourner la chaine de caractere de choixIA
 
@@ -372,7 +394,7 @@
             
             # si sinon firstPlayer vaut la valeur 2
                 # alors
-                # assigner à choixRobot le retour de l'éxécution de la fontion IA
+                # assigner à choixRobot le retour de l'éxécution de la fontion IA de paramètre un mot vide ## ou easterEgg selon le cas
                 # incrémenter alreadyPlay avec le retour de l'éxécution la méthode append de paramètre choixRobot
                 # utiliser la fonction amplacementJoueur de paramètre choixRobot et joueurPlay2
                 # incrémenter de -1 firstPlayer
