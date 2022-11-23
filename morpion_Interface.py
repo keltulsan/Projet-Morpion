@@ -1,9 +1,17 @@
 from random import *
 import os
 import time
+import turtle as t
 
 command = 'cls' #for windows
 os.system(command)
+
+t.setup(800, 700, 700, 100)  #Largeur : 800px, Hauteur : 700px, position écran x : 700px, pos y : 100px
+t.title("Morpion by Ewen et Naëlle")  #Change le titre
+t.up()
+t.setpos(-300, 300) #position au départ
+t.speed(0)
+r = 70
 
 taille = 3
 
@@ -30,16 +38,20 @@ tab = tailleGrille(taille)
 tabFictif = [['□' for i in range(taille)]for j in range(taille)]
 tableauReussite = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "123456789"]
 tableauPosition = position()
+emplacementWin = ""
+numEmplacement = ""
 
 longueurTab = len(tab)*len(tab)
-joueurPlay1 = input("Joueur 1 choississez la figure que vous voulez jouer : ")
+joueurPlay1 = (input("Joueur 1 choississez la figure que vous voulez jouer : "))
+joueurPlay1 = joueurPlay1.upper()
 
 while not joueurPlay1 in ["O", "X"]:
     joueurPlay1 = input("Joueur 1 rechoississez la figure que vous voulez jouer. Vous pouveza choisir O et X : ")
 
-joueurPlay2 = choice(["O", "X"]) # choix alea figure
-if joueurPlay2 == joueurPlay1 :
-    joueurPlay2 = choice(["O", "X"])
+if joueurPlay1 == "X":
+    joueurPlay2 = "O"
+else:
+    joueurPlay2 = "X"
 
 alreadyPlay = [] 
 firstPlayer = choice([1,2]) # choix du joueur qui commence
@@ -59,6 +71,7 @@ def afficher():
 
 def emplacementJoueur (choix, coup_Joueur):
     """ Modifie l'emplacement dans le cadriallage du morpion par la figure du joueur choisi qui prend en paramètre l'emplacement choisi et la figure choisie par le joueur"""
+    cpt = 1
     if choix == "1" :
         tab[0][0] = coup_Joueur
         tabFictif[0][0] = coup_Joueur
@@ -87,14 +100,21 @@ def emplacementJoueur (choix, coup_Joueur):
         tab[2][2] = coup_Joueur
         tabFictif[2][2] = coup_Joueur
     elif choix == "123456789" :
-        for i in range(3):
-            for j in range(3):
-                tab[i][j] = coup_Joueur
-                tabFictif[i][j] = coup_Joueur
+            t.clear()
+            t.setpos(-300, 300)
+            t.right(90)
+            grille_turtle()
+            for i in range(3):
+                for j in range(3):
+                    tab[i][j] = coup_Joueur
+                    tabFictif[i][j] = coup_Joueur
+                    position_letter(str(cpt),coup_Joueur)
+                    cpt+=1
     return afficher()
 
 
 def Victoire():
+    global emplacementWin, numEmplacement
     winTotale = [0 for i in range(8)] # [[789], [456], [123], [741], [852], [963], [753], [951]] #combinaison de win possible
                                       # [  0,     0,     0,     0,     0,     0,     0,     0  ]
      # regarde les victoires en lignes horizontales. 
@@ -105,6 +125,8 @@ def Victoire():
             pass
         else:
             winTotale[i] = tab[i][0]
+            emplacementWin = "ligne" 
+            numEmplacement = str(i+1)
 
     # regarde les victoires en lignes verticales. 
     for i in range(3):
@@ -114,6 +136,8 @@ def Victoire():
             pass
         else:
             winTotale[i + 3] = tab[0][i]
+            emplacementWin = "colonne" 
+            numEmplacement = str(i+1)
 
     # regarde les victoires en lignes en diagonales. 
     for i in range(2):
@@ -123,6 +147,9 @@ def Victoire():
             pass
         else:
             winTotale[i + 6] = tab[0][i * 2]
+            emplacementWin = "diagonale" 
+            numEmplacement = str(i+1)
+
     return winTotale
         
 
@@ -132,6 +159,114 @@ def whoWin():
             return print("Victoire du Joueur 1")
         elif i == joueurPlay2:
             return print("Victoire du Joueur 2")
+
+
+
+def grille_turtle():
+    """ Créer la grille de morpion de 3x3"""
+    length=600
+    t.pensize(10)
+    t.color("black")
+    for i in range(2):
+        t.right(90)
+        t.forward(length//3)
+        t.left(90)
+        t.down()
+        t.forward(length)
+        t.backward(length)
+        t.up()
+
+    t.forward(length//3)
+    t.right(90)
+    t.forward(length//3)
+    t.right(180)
+        
+    t.down()
+    t.forward(length)
+    t.backward(length)
+    t.up()
+    t.right(90)
+    t.forward(length//3)
+    t.left(90)
+    t.down()
+    t.forward(length)
+    t.backward(length)
+    t.up()
+
+def letterX(lengthX,x,y):
+    t.setpos(x,y)
+    t.pensize(10)
+    t.color("purple")
+    t.down()
+    t.right(45)
+    t.forward(lengthX/2)
+    t.right(180)
+    t.forward(lengthX)
+    t.right(180)
+    t.forward(lengthX/2)
+    t.left(90)
+    t.forward(lengthX/2)
+    t.right(180)
+    t.forward(lengthX)
+    t.right(180)
+    t.forward(lengthX/2)
+    t.right(45)
+    t.up()
+
+def letterO (x,y):
+    t.setpos(x,y)
+    t.color("pink")
+    t.down()
+    t.circle(r)
+    t.up()
+
+
+def position_letter (coup_joueur,letter) :
+    if coup_joueur == "1" :
+        if letter == "O" :
+            letterO(-130,200)
+        elif letter == "X" :
+            letterX(200,-200,200)
+    elif coup_joueur == "2" :
+        if letter == "O" :
+            letterO(70,200)
+        elif letter == "X" :
+            letterX(200,0,200)
+    elif coup_joueur == "3" :
+        if letter == "O" :
+            letterO(270,200)
+        elif letter == "X" :
+            letterX(200,200,200)
+    elif coup_joueur == "4" :
+        if letter == "O" :
+            letterO(-130,0)
+        elif letter == "X" :
+            letterX(200,-200,0)
+    elif coup_joueur == "5" :
+        if letter == "O" :
+            letterO(70,0)
+        elif letter == "X" :
+            letterX(200,0,0)
+    elif coup_joueur == "6" :
+        if letter == "O" :
+            letterO(270,0)
+        elif letter == "X" :
+            letterX(200,200,0)
+    elif coup_joueur == "7" :
+        if letter == "O" :
+            letterO(-130,-200)
+        elif letter == "X" :
+            letterX(200,-200,-200)
+    elif coup_joueur == "8" :
+        if letter == "O" :
+            letterO(70,-200)
+        elif letter == "X" :
+            letterX(200,0,-200)
+    elif coup_joueur == "9" :
+        if letter == "O" :
+            letterO(270,-200)
+        elif letter == "X" :
+            letterX(200,200,-200)
 
 
 def IA () :
@@ -242,6 +377,7 @@ def IA () :
 
 def game():
     global firstPlayer, joueurPlay2
+    grille_turtle()
     robot = input("Voulez vous jouer avec un bot ? [True or False] ")
     coupJouer = ""
 
@@ -267,7 +403,8 @@ def game():
                     caseJoueurPlay1 = input("Joueur 1 refaite votre choix pour jouer : ")
                     print("\n")
                 alreadyPlay.append(caseJoueurPlay1)
-                emplacementJoueur(caseJoueurPlay1, joueurPlay1 ) 
+                emplacementJoueur(caseJoueurPlay1, joueurPlay1)
+                position_letter(caseJoueurPlay1, joueurPlay1) 
                 firstPlayer +=1 #modifie le joueur qui va commencer 
                 coupJouer = caseJoueurPlay1
 
@@ -278,7 +415,8 @@ def game():
                     caseJoueurPlay2 = input("Joueur 2 refaite votre choix pour jouer : ")
                     print("\n")
                 alreadyPlay.append(caseJoueurPlay2)
-                emplacementJoueur(caseJoueurPlay2, joueurPlay2) 
+                emplacementJoueur(caseJoueurPlay2, joueurPlay2)
+                position_letter(caseJoueurPlay2, joueurPlay2)  
                 firstPlayer -=1 #modifie le joueur qui va commencer 
                 coupJouer = caseJoueurPlay2
 
@@ -292,13 +430,15 @@ def game():
                     print("\n")
                 alreadyPlay.append(caseJoueurPlay1)
                 emplacementJoueur(caseJoueurPlay1, joueurPlay1) 
+                position_letter(caseJoueurPlay1, joueurPlay1) 
                 firstPlayer +=1 #modifie le joueur qui va commencer 
                 coupJouer = caseJoueurPlay1
 
             elif firstPlayer == 2 :  
                 choixRobot = IA() 
                 alreadyPlay.append(choixRobot)
-                emplacementJoueur(choixRobot, joueurPlay2) 
+                emplacementJoueur(choixRobot, joueurPlay2)
+                position_letter(choixRobot, joueurPlay2) 
                 firstPlayer -= 1 #modifie le joueur qui va commencer 
                 coupJouer = choixRobot
         print("La position " + str(coupJouer) + " a été selectionnée \n")
@@ -311,3 +451,4 @@ def game():
     return 
             
 game() 
+t.done()

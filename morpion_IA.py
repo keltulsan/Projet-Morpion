@@ -255,7 +255,7 @@ def IA (dificultie) :
             choixIA = tableauPosition[2][2] 
             return str(choixIA)
     
-    
+
 
 def game():
     global firstPlayer, joueurPlay2
