@@ -148,7 +148,7 @@ def IA (dificultie) :
     choixIA = ""
     mot = ""
 
-    # regarde dans les lignes si l'un des deux joueur a 2 fois sont symboles
+    # regarde dans les lignes si l'un des deux joueur a 2 fois son symboles
     for i in range(3):     
         cptJ2 = [tabFictif[i][j]for j in range(3)].count(joueurPlay2)
         if cptJ2 == 2:
@@ -168,7 +168,7 @@ def IA (dificultie) :
                     choixIA = tableauPosition[i][x]
                     return str(choixIA)
         
-    # regarde dans les colonnes si l'un des deux joueur a 2 fois sont symboles
+    # regarde dans les colonnes si l'un des deux joueur a 2 fois son symboles
     for i in range(3):
         cptJ2 = [tabFictif[j][i]for j in range(3)].count(joueurPlay2)
         if cptJ2 == 2:
@@ -188,7 +188,7 @@ def IA (dificultie) :
                     choixIA = tableauPosition[x][i]
                     return str(choixIA)
      
-    # regarde dans les diagonales si l'un des deux joueur a 2 fois sont symboles
+    # regarde dans les diagonales si l'un des deux joueur a 2 fois son symboles
     for i in range(2):
         cptJ2 = [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)].count(joueurPlay2)
         if cptJ2 == 2:
@@ -205,6 +205,16 @@ def IA (dificultie) :
                     return str(choixIA)
 
 
+    if tabFictif[0][0] == joueurPlay1 and tabFictif[2][2] == joueurPlay1 or tabFictif[0][2] == joueurPlay1 and tabFictif[2][0] == joueurPlay1:
+        if tabFictif[1][0] == '□':
+            choixIA = tableauPosition[1][0]
+        elif tabFictif[0][1] == '□':
+            choixIA = tableauPosition[0][1]
+        elif tabFictif[1][2] == '□':
+            choixIA = tableauPosition[1][2]
+        elif tabFictif[2][1] == '□':
+            choixIA = tableauPosition[2][1]
+        return str(choixIA)
 
     # regarde dans les diagonales si l'IA a son symbole présent une seule fois et que le joueur n'est aucun symbole sur la ligne 
     # alors l'IA se mettra à coté de son symbole déjà présent
@@ -243,9 +253,6 @@ def IA (dificultie) :
     # si le centre est libre l'IA se met au centre
     if tabFictif[1][1] == '□' : 
         choixIA = tableauPosition[1][1] 
-        return str(choixIA)
-    elif tabFictif[0][0] == joueurPlay1 and tabFictif[2][2] == joueurPlay1 or tabFictif[0][2] == joueurPlay1 and tabFictif[2][0] == joueurPlay1:
-        choixIA = tableauPosition[1][0]
         return str(choixIA)
     else :
         # sinon elle se met dans l'un des coins

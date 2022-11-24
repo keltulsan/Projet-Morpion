@@ -171,7 +171,7 @@
     #initialiser choixIA en lui attribuant une valeur vide
     #initialiser mot qui vaut un mot vide
 
-'''regarder dans les lignes si l'un des deux joueur a 2 fois sont symboles'''
+'''regarder dans les lignes si l'un des deux joueur a 2 fois son symboles'''
     #pour i dans le retour de l'éxécution de la fonction range de paramètre 3
         #attribuer à cptJ2 le retour de l'execution de la fonction count de parametre joueurPlay2 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice i et j
         #pour j dans le retour de l'execution de la fonction range de parametre 3
@@ -200,7 +200,7 @@
                     #attribuer à choixIA la valeur de tableauPosition d'indices i et x
                     #retourner la chaine de caractere de choixIA
 
-'''regarder dans les colonnes si l'un des deux joueur a 2 fois sont symboles'''
+'''regarder dans les colonnes si l'un des deux joueur a 2 fois son symboles'''
     #pour i dans le retour de l'éxécution de la fonction range de paramètre 3
         #attribuer à cptJ2 le retour de l'execution de la fonction count de parametre joueurPlay2 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice j et i
         #pour j dans le retour de l'execution de la fonction range de parametre 3
@@ -229,7 +229,7 @@
                     #attribuer à choixIA la valeur de tableauPosition d'indices x et i
                     #retourner la chaine de caractere de choixIA
 
-'''regarder dans les diagonales si l'un des deux joueur a 2 fois sont symboles'''
+'''regarder dans les diagonales si l'un des deux joueur a 2 fois son symboles'''
     #pour i dans le retour de l'éxécution de la fonction range de paramètre 2
         #attribuer à cptJ2 le retour de l'execution de la fonction count de parametre joueurPlay2 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice j et (2 - j) * i - j * (i - 1)
         #pour j dans le retour de l'execution de la fonction range de parametre 3
@@ -251,6 +251,22 @@
                     #alors
                     #attribuer à choixIA la valeur de tableauPosition d'indices x et (2 - x) * i - x * (i - 1)
                     #retourner la chaine de caractere de choixIA
+"""Dans le cas où le joueur adverse est présent dans deux coins oposé fait en sorte de l'empêcher de gagner"""
+    # si tabFictif d'indice 0, 0 vaut le symbole de joueurPlay1 or tabFictif d'indice 2, 2 vaut le symbole de joueurPlay1 and tabFictif d'indice 0, 2 vaut le symbole de joueurPlay1 or tabFictif d'indice 2, 0 vaut le symbole de joueurPlay1 
+        # alors
+        # si tabFictif d'indice 1, 0 vaut la str '□'
+            # alors
+            # choixIA vaut tableauPosition d'indice 1,0 
+        # si tabFictif d'indice 0, 1 vaut la str '□'
+            # alors
+            # choixIA vaut tableauPosition d'indice 0,1 
+        # si tabFictif d'indice 1, 2 vaut la str '□'
+            # alors
+            # choixIA vaut tableauPosition d'indice 1,2 
+        # si tabFictif d'indice 2, 1 vaut la str '□'
+            # alors
+            # choixIA vaut tableauPosition d'indice 2,1 
+        # renvoyer choixIA
 
 '''regarder dans les colonnes si l'IA à son symbole présent une seule fois et le joueur n'a aucun symbole sur la ligne'''
     #pour i dans le retour de l'éxécution de la fonction range de paramètre 2
