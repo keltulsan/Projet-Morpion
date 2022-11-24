@@ -374,8 +374,19 @@ def IA () :
                 if tabFictif[x][(2 - x) * i - x * (i - 1)] == '□' : #regarde quel caractère est '□'
                     choixIA = tableauPosition[x][(2 - x) * i - x * (i - 1)] # donne la position du caratère '□' dans le tableau
                     return str(choixIA)
-
-   # regarde dans les diagonales si l'IA a son symbole présent une seule fois et que le joueur n'est aucun symbole sur la ligne 
+                
+    if tabFictif[0][0] == joueurPlay1 and tabFictif[2][2] == joueurPlay1 or tabFictif[0][2] == joueurPlay1 and tabFictif[2][0] == joueurPlay1:
+        if tabFictif[1][0] == '□':
+            choixIA = tableauPosition[1][0]
+        elif tabFictif[0][1] == '□':
+            choixIA = tableauPosition[0][1]
+        elif tabFictif[1][2] == '□':
+            choixIA = tableauPosition[1][2]
+        elif tabFictif[2][1] == '□':
+            choixIA = tableauPosition[2][1]
+        return str(choixIA)
+    
+    # regarde dans les diagonales si l'IA a son symbole présent une seule fois et que le joueur n'est aucun symbole sur la ligne 
     # alors l'IA se mettra à coté de son symbole déjà présent
     for i in range(2):
         cptJ1 = [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)].count(joueurPlay1)
