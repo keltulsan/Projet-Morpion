@@ -2,8 +2,6 @@ from random import *
 import os
 import time
 
-command = 'cls' #for windows
-os.system(command)
 
 taille = 3
 
@@ -18,6 +16,7 @@ def tailleGrille(taille):
     return tab
 
 def position() :
+    """Renvoie un tableau de tableau composé de la position des choix, comme 1 qui est la position en haut à droite"""
     tab = tailleGrille(taille)
     cpt = 1
     for i in range(3): 
@@ -98,6 +97,8 @@ def emplacementJoueur (choix, coup_Joueur):
 
 
 def Victoire():
+    """Cette fonction regarde toutes les possibilités de gagner une partie. Les lignes, les colonnes, les diagonales
+    Renvoie un tableau de valeurs qui peut être composé de 0, -1 et le symbole du joueur qui as réussi à gagner"""
     winTotale = [0 for i in range(8)] # [[789], [456], [123], [741], [852], [963], [753], [951]] #combinaison de win possible
                                       # [  0,     0,     0,     0,     0,     0,     0,     0  ]
      # regarde les victoires en lignes horizontales. 
@@ -130,6 +131,7 @@ def Victoire():
         
 
 def whoWin():
+    """Cette fonction va vérifier si l'un des deux joueurs a gagner et le renverra"""
     for i in Victoire() :
         if i == joueurPlay1 : 
             return print("Victoire du Joueur 1")
@@ -138,6 +140,9 @@ def whoWin():
 
 
 def IA (dificultie) :
+    """Création d'une IA qui va vérifier tous les cas où l'un des deux joueurs peut gagner et remplir cette case, priorise la vicoire à l'égalité.
+    Si il n'y a qu'une seule figure dans une ligne, colonne, diagonale , elle va placer sa figure pour former un couple de 2, priorise les diagonales.
+    Rempli automatiquement le centre ou l'un des quatres coins au début """
     cptJ1 = 0 # compteur de figures présentes du joueur
     cptJ2 = 0 # compteur de figures présentes de l'IA
     choixIA = ""
@@ -265,6 +270,7 @@ def IA (dificultie) :
 
 
 def game():
+    """Création d'une partie de morpion qui peut se joueur à 2 ou seul avec une IA"""
     global firstPlayer, joueurPlay2
     robot = input("Voulez vous jouer avec un bot ? [True or False] ")
     coupJouer = ""

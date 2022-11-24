@@ -3,9 +3,6 @@ import os
 import time
 import turtle as t
 
-command = 'cls' #for windows
-os.system(command)
-
 t.setup(800,700,600,100)  #Largeur : 800px, Hauteur : 700px, position écran x : 700px, pos y : 100px
 t.title("Morpion by Ewen et Naëlle")  #Change le titre
 t.up()
@@ -26,6 +23,7 @@ def tailleGrille(taille):
     return tab
 
 def position() :
+    """ Affiche le plateau du morpion comme le vrai jeu"""
     tab = tailleGrille(taille)
     cpt = 1
     for i in range(3): 
@@ -43,11 +41,11 @@ numEmplacement = ""
 
 longueurTab = len(tab)*len(tab)
 joueurPlay1 = (input("Joueur 1 choississez la figure que vous voulez jouer : "))
-joueurPlay1 = str(joueurPlay1.upper())
+joueurPlay1 = joueurPlay1.upper()
 
 while not joueurPlay1 in ["O", "X"]:
     joueurPlay1 = input("Joueur 1 rechoississez la figure que vous voulez jouer. Vous pouveza choisir O et X : ")
-    joueurPlay1 = str(joueurPlay1.upper())
+    joueurPlay1 = joueurPlay1.upper()
 
 if joueurPlay1 == "X":
     joueurPlay2 = "O"
@@ -115,6 +113,8 @@ def emplacementJoueur (choix, coup_Joueur):
 
 
 def Victoire():
+    """Cette fonction regarde toutes les possibilités de gagner une partie. Les lignes, les colonnes, les diagonales
+    Renvoie un tableau de valeurs qui peut être composé de 0, -1 et le symbole du joueur qui as réussi à gagner"""
     global emplacementWin, numEmplacement
     winTotale = [0 for i in range(8)] # [[789], [456], [123], [741], [852], [963], [753], [951]] #combinaison de win possible
                                       # [  0,     0,     0,     0,     0,     0,     0,     0  ]
@@ -155,6 +155,7 @@ def Victoire():
         
 
 def whoWin():
+    """Cette fonction va vérifier si l'un des deux joueurs a gagner et le renverra"""
     for i in Victoire() :
         if i == joueurPlay1 : 
             return print("Victoire du Joueur 1")
@@ -319,6 +320,9 @@ def victoire_turtle(numEmplacement,emplacementWin):
 
 
 def IA () :
+    """Création d'une IA qui va vérifier tous les cas où l'un des deux joueurs peut gagner et remplir cette case, priorise la vicoire à l'égalité.
+    Si il n'y a qu'une seule figure dans une ligne, colonne, diagonale , elle va placer sa figure pour former un couple de 2, priorise les diagonales.
+    Rempli automatiquement le centre ou l'un des quatres coins au début """
     cptJ1 = 0 # compteur de figures présentes du joueur
     cptJ2 = 0 # compteur de figures présentes de l'IA
     choixIA = ""
@@ -431,6 +435,7 @@ def IA () :
     return(choixIA)
 
 def game():
+    """Création d'une partie de morpion qui peut se joueur à 2 ou seul avec une IA"""
     global firstPlayer, joueurPlay2, numEmplacement, emplacementWin
     grille_turtle()
     robot = input("Voulez vous jouer avec un bot ? [True or False] ")
@@ -439,15 +444,18 @@ def game():
     if robot == "False": 
         print("Vous avez choisi le mode multijoueur \n \n")
         joueurPlay2 = input("Joueur 2 choississez la figure que vous voulez jouer : ") #si pas robot alors le joueur 2 choisi la figure qu'il veut
-        joueurPlay2 = str(joueurPlay2.upper())
-        print(joueurPlay1)
-        print(joueurPlay2)
+        joueurPlay2 = joueurPlay2.upper()
         print("\n")
-        if joueurPlay1 == joueurPlay2 and not joueurPlay2 in ["X", "0"]:
-            while joueurPlay1 == joueurPlay2 and not joueurPlay2 in ["X", "0"]:
-                joueurPlay2 = input("Joueur 2 rechoississez la figure que vous voulez jouer, ['X', '0'] : ")
-                joueurPlay2 = str(joueurPlay2.upper())
-                print("\n")
+        if joueurPlay1 == "O" :
+            while joueurPlay2 != "X" :
+                joueurPlay2 = input("Joueur 2 rechoississez la figure que vous voulez jouer, 'X' : ")
+                joueurPlay2 = joueurPlay2.upper()
+        else :
+            while joueurPlay2 != "O" :
+                joueurPlay2 = input("Joueur 2 rechoississez la figure que vous voulez jouer, 'O' : ")
+                joueurPlay2 = joueurPlay2.upper()
+                
+        print("\n")
     
     else : 
          print("Vous avez choisi le mode contre L'IA \n \n")

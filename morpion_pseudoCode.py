@@ -1,9 +1,5 @@
 #debut 
 
-# importer le module random
-# importer le module time
-# importer le module os
-
 # assigner à command la str "cls"
 # utiliser la fonction du system du module os de paramètre command  ## os.system(command)
 
