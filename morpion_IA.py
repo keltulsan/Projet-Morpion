@@ -142,7 +142,7 @@ def whoWin():
 def IA (dificultie) :
     """Création d'une IA qui va vérifier tous les cas où l'un des deux joueurs peut gagner et remplir cette case, priorise la vicoire à l'égalité.
     Si il n'y a qu'une seule figure dans une ligne, colonne, diagonale , elle va placer sa figure pour former un couple de 2, priorise les diagonales.
-    Rempli automatiquement le centre ou l'un des quatres coins au début """
+    Rempli automatiquement le centre ou l'un des quatres coins au début"""
     cptJ1 = 0 # compteur de figures présentes du joueur
     cptJ2 = 0 # compteur de figures présentes de l'IA
     choixIA = ""
@@ -326,7 +326,7 @@ def game():
                 coupJouer = caseJoueurPlay1
 
             elif firstPlayer == 2 :  
-                choixRobot = IA("") # esterEgg
+                choixRobot = IA("") # esterEgg == "Hard"
                 alreadyPlay.append(choixRobot)
                 emplacementJoueur(choixRobot, joueurPlay2) 
                 firstPlayer -= 1 #modifie le joueur qui va commencer 
