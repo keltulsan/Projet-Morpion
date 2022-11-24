@@ -322,7 +322,7 @@ def game():
                 coupJouer = caseJoueurPlay1
 
             elif firstPlayer == 2 :  
-                choixRobot = IA("Hard") # esterEgg == "Hard"
+                choixRobot = IA("") # esterEgg == "Hard"
                 alreadyPlay.append(choixRobot)
                 emplacementJoueur(choixRobot, joueurPlay2) 
                 firstPlayer -= 1 #modifie le joueur qui va commencer 
