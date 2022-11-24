@@ -262,6 +262,20 @@
                     #attribuer à choixIA la valeur de tableauPosition d'indices x et (2 - x) * i - x * (i - 1)
                     #retourner la chaine de caractere de choixIA
 
+'''regarder dans les colonnes si l'IA à son symbole présent une seule fois et le joueur n'a aucun symbole sur la ligne'''
+    #pour i dans le retour de l'éxécution de la fonction range de paramètre 2
+        #attribuer à cptJ1 le retour de l'execution de la fonction count de parametre joueurPlay1 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice j et (2 - j) * i - j * (i - 1)
+        #pour j dans le retour de l'execution de la fonction range de parametre 3
+        #attribuer à cptJ2 le retour de l'execution de la fonction count de parametre joueurPlay2 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice j et (2 - j) * i - j * (i - 1)
+        #pour j dans le retour de l'execution de la fonction range de parametre 3
+        #si cptJ2 est égal à 1 et cptJ1 est égal à 0
+            #alors
+            #pour x dans le retour de l'éxécution de la fonction range de paramètre 3
+                #si la valeur de tabFictif d'indices x et (2 - x) * i - x * (i - 1) vaut "□"
+                    #alors
+                    #attribuer à choixIA la valeur de tableauPosition d'indices x et (2 - x) * i - x * (i - 1)
+                    #retourner la chaine de caractere de choixIA
+
 '''regarder dans les lignes si l'IA à son symbole présent une seule fois et le joueur n'a aucun symbole sur la ligne alors l'IA se mettra à coté de son symbole déjà présent'''
     #pour i dans le retour de l'éxécution de la fonction range de paramètre 3
         #attribuer à cptJ1 le retour de l'execution de la fonction count de parametre joueurPlay1 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice i et j
@@ -290,20 +304,6 @@
                     #attribuer à choixIA la valeur de tableauPosition d'indices x et i
                     #retourner la chaine de caractere de choixIA
 
-'''regarder dans les colonnes si l'IA à son symbole présent une seule fois et le joueur n'a aucun symbole sur la ligne'''
-    #pour i dans le retour de l'éxécution de la fonction range de paramètre 2
-        #attribuer à cptJ1 le retour de l'execution de la fonction count de parametre joueurPlay1 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice j et (2 - j) * i - j * (i - 1)
-        #pour j dans le retour de l'execution de la fonction range de parametre 3
-        #attribuer à cptJ2 le retour de l'execution de la fonction count de parametre joueurPlay2 à partir d'un nouveau tableau rempli des valeurs de tabFictif d'indice j et (2 - j) * i - j * (i - 1)
-        #pour j dans le retour de l'execution de la fonction range de parametre 3
-        #si cptJ2 est égal à 1 et cptJ1 est égal à 0
-            #alors
-            #pour x dans le retour de l'éxécution de la fonction range de paramètre 3
-                #si la valeur de tabFictif d'indices x et (2 - x) * i - x * (i - 1) vaut "□"
-                    #alors
-                    #attribuer à choixIA la valeur de tableauPosition d'indices x et (2 - x) * i - x * (i - 1)
-                    #retourner la chaine de caractere de choixIA
-
 '''regarder si le centre est libre sinon si les coins sont libres'''
     #si la valeur de tabFictif d'indices 1 et 1 vaut "□"
         #alors
@@ -327,7 +327,12 @@
             #alors
             #attribuer à choixIA la valeur de tableauPosition d'inidices 2 et 2
             #retourner la chaine de caractere de choixIA
-            
+
+    # assigner à choixIA la valeur du retour de l'éxécution de la fonction choice de paramètre tableauReussite sans la dernière valeur de ce tableau
+    # tant que choixIA dans alreadyPlay 
+        # alors
+        # assigner à choixIA la valeur du retour de l'éxécution de la fonction choice de paramètre tableauReussite sans la dernière valeur de ce tableau  
+    # renvoyer choixIA    
 
 # definir la fonction game
     # appelle de global avec les variables firstPlayer et joueurPlay2

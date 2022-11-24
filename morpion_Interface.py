@@ -322,6 +322,17 @@ def IA () :
                     choixIA = tableauPosition[x][(2 - x) * i - x * (i - 1)] # donne la position du caratère '□' dans le tableau
                     return str(choixIA)
 
+   # regarde dans les diagonales si l'IA a son symbole présent une seule fois et que le joueur n'est aucun symbole sur la ligne 
+    # alors l'IA se mettra à coté de son symbole déjà présent
+    for i in range(2):
+        cptJ1 = [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)].count(joueurPlay1)
+        cptJ2 = [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)].count(joueurPlay2)
+        if cptJ2 == 1 and cptJ1 == 0:
+            for x in range(3):
+                if tabFictif[x][(2 - x) * i - x * (i - 1)] == '□' : #regarde quel caractère est '□'
+                    choixIA = tableauPosition[x][(2 - x) * i - x * (i - 1)] # donne la position du caratère '□' dans le tableau
+                    return str(choixIA)
+
     # regarde dans les lignes si l'IA a son symbole présent une seule fois et que le joueur n'est aucun symbole sur la ligne 
     # alors l'IA se mettra à coté de son symbole déjà présent
     for i in range(3):     
@@ -344,16 +355,6 @@ def IA () :
                     choixIA = tableauPosition[x][i]
                     return str(choixIA)
 
-    # regarde dans les diagonales si l'IA a son symbole présent une seule fois et que le joueur n'est aucun symbole sur la ligne 
-    # alors l'IA se mettra à coté de son symbole déjà présent
-    for i in range(2):
-        cptJ1 = [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)].count(joueurPlay1)
-        cptJ2 = [tabFictif[j][(2 - j) * i - j * (i - 1)] for j in range(3)].count(joueurPlay2)
-        if cptJ2 == 1 and cptJ1 == 0:
-            for x in range(3):
-                if tabFictif[x][(2 - x) * i - x * (i - 1)] == '□' : #regarde quel caractère est '□'
-                    choixIA = tableauPosition[x][(2 - x) * i - x * (i - 1)] # donne la position du caratère '□' dans le tableau
-                    return str(choixIA)
 
     # si le centre est libre l'IA se met au centre
     if tabFictif[1][1] == '□' : 
@@ -373,7 +374,12 @@ def IA () :
         elif tabFictif[2][2] == '□':
             choixIA = tableauPosition[2][2] 
             return str(choixIA)
-    
+            
+    choixIA = choice(tableauReussite[:-1])
+    while choixIA in alreadyPlay :
+        choixIA = choice(tableauReussite[:-1])
+        
+    return(choixIA)
 
 def game():
     global firstPlayer, joueurPlay2
