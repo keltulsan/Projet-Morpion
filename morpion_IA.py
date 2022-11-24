@@ -299,10 +299,10 @@ def game():
         if robot == "False":
             time.sleep(0.3)
             if firstPlayer == 1 :
-                caseJoueurPlay1 = input("Joueur 1 faite votre choix pour jouer : ") 
+                caseJoueurPlay1 = input("Joueur 1 faites votre choix pour jouer : ") 
                 print("\n")
                 while caseJoueurPlay1 in alreadyPlay or not caseJoueurPlay1 in tableauReussite :
-                    caseJoueurPlay1 = input("Joueur 1 refaite votre choix pour jouer : ")
+                    caseJoueurPlay1 = input("Joueur 1 refaites votre choix pour jouer : ")
                     print("\n")
                 alreadyPlay.append(caseJoueurPlay1)
                 emplacementJoueur(caseJoueurPlay1, joueurPlay1 ) 
@@ -310,10 +310,10 @@ def game():
                 coupJouer = caseJoueurPlay1
 
             elif firstPlayer == 2 :
-                caseJoueurPlay2 =  input("Joueur 2 faite votre choix pour jouer : ")
+                caseJoueurPlay2 =  input("Joueur 2 faites votre choix pour jouer : ")
                 print("\n")
                 while caseJoueurPlay2 in alreadyPlay or not caseJoueurPlay2 in tableauReussite :
-                    caseJoueurPlay2 = input("Joueur 2 refaite votre choix pour jouer : ")
+                    caseJoueurPlay2 = input("Joueur 2 refaites votre choix pour jouer : ")
                     print("\n")
                 alreadyPlay.append(caseJoueurPlay2)
                 emplacementJoueur(caseJoueurPlay2, joueurPlay2) 
@@ -323,10 +323,10 @@ def game():
         else :
             time.sleep(0.5)
             if firstPlayer == 1 :
-                caseJoueurPlay1 = input("Joueur 1 faite votre choix pour jouer : ") 
+                caseJoueurPlay1 = input("Joueur 1 faites votre choix pour jouer : ") 
                 print("\n")
                 while caseJoueurPlay1 in alreadyPlay or not caseJoueurPlay1 in tableauReussite :
-                    caseJoueurPlay1 = input("Joueur 1 refaite votre choix pour jouer : ")
+                    caseJoueurPlay1 = input("Joueur 1 refaites votre choix pour jouer : ")
                     print("\n")
                 alreadyPlay.append(caseJoueurPlay1)
                 emplacementJoueur(caseJoueurPlay1, joueurPlay1) 
