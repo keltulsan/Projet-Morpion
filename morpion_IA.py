@@ -45,7 +45,7 @@ if joueurPlay2 == joueurPlay1 :
 
 alreadyPlay = [] 
 firstPlayer = choice([1,2]) # choix du joueur qui commence
-print("Vous joueurez en " + str(firstPlayer) + " - - - - - [1 : Vous commencez et 2 : Vous jouerez en second]")
+print("Vous jourez en " + str(firstPlayer) + " - - - - - [1 : Vous commencez et 2 : Vous jouerez en second]")
 
 
 def afficher():
@@ -204,6 +204,8 @@ def IA (dificultie) :
                     choixIA = tableauPosition[x][(2 - x) * i - x * (i - 1)] # donne la position du caratère '□' dans le tableau
                     return str(choixIA)
 
+
+
     # regarde dans les diagonales si l'IA a son symbole présent une seule fois et que le joueur n'est aucun symbole sur la ligne 
     # alors l'IA se mettra à coté de son symbole déjà présent
     for i in range(2):
@@ -241,6 +243,9 @@ def IA (dificultie) :
     # si le centre est libre l'IA se met au centre
     if tabFictif[1][1] == '□' : 
         choixIA = tableauPosition[1][1] 
+        return str(choixIA)
+    elif tabFictif[0][0] == joueurPlay1 and tabFictif[2][2] == joueurPlay1 or tabFictif[0][2] == joueurPlay1 and tabFictif[2][0] == joueurPlay1:
+        choixIA = tableauPosition[1][0]
         return str(choixIA)
     else :
         # sinon elle se met dans l'un des coins
@@ -322,7 +327,7 @@ def game():
                 coupJouer = caseJoueurPlay1
 
             elif firstPlayer == 2 :  
-                choixRobot = IA("") # esterEgg == "Hard"
+                choixRobot = IA("") # easterEgg == "Hard"
                 alreadyPlay.append(choixRobot)
                 emplacementJoueur(choixRobot, joueurPlay2) 
                 firstPlayer -= 1 #modifie le joueur qui va commencer 
