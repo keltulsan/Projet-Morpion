@@ -6,7 +6,7 @@ import turtle as t
 command = 'cls' #for windows
 os.system(command)
 
-t.setup(800, 700, 700, 100)  #Largeur : 800px, Hauteur : 700px, position écran x : 700px, pos y : 100px
+t.setup(800,700,600,100)  #Largeur : 800px, Hauteur : 700px, position écran x : 700px, pos y : 100px
 t.title("Morpion by Ewen et Naëlle")  #Change le titre
 t.up()
 t.setpos(-300, 300) #position au départ
@@ -43,10 +43,11 @@ numEmplacement = ""
 
 longueurTab = len(tab)*len(tab)
 joueurPlay1 = (input("Joueur 1 choississez la figure que vous voulez jouer : "))
-joueurPlay1 = joueurPlay1.upper()
+joueurPlay1 = str(joueurPlay1.upper())
 
 while not joueurPlay1 in ["O", "X"]:
     joueurPlay1 = input("Joueur 1 rechoississez la figure que vous voulez jouer. Vous pouveza choisir O et X : ")
+    joueurPlay1 = str(joueurPlay1.upper())
 
 if joueurPlay1 == "X":
     joueurPlay2 = "O"
@@ -268,6 +269,54 @@ def position_letter (coup_joueur,letter) :
         elif letter == "X" :
             letterX(200,200,-200)
 
+def ligne() :
+    t.down()
+    t.right(90)
+    t.forward(400)
+    t.left(90)
+
+def colonne():
+    t.down()
+    t.right(180)
+    t.forward(400)
+    t.left(180)
+    
+def diagonale():
+    t.down()
+    t.right(135)
+    t.forward(565)
+    t.left(135)
+
+def victoire_turtle(numEmplacement,emplacementWin):
+    t.color("orange")
+    if numEmplacement == "1" :
+        t.setpos(-200, 200)
+        if emplacementWin == "ligne" :
+            ligne()
+        elif emplacementWin == "colonne" :
+            colonne()
+        elif emplacementWin == "diagonale" :
+            diagonale()
+    elif numEmplacement == "2" :
+        if emplacementWin == "ligne" :
+            t.setpos(-200, 0)
+            ligne()
+        elif emplacementWin == "colonne" :
+            t.setpos(0, 200)
+            colonne()
+        elif emplacementWin == "diagonale" :
+            t.setpos(200, 200)
+            t.right(90)
+            diagonale()
+    elif numEmplacement == "3" :
+        if emplacementWin == "ligne" :
+            t.setpos(-200, -200)
+            ligne()
+        elif emplacementWin == "colonne" :
+            t.setpos(200, 200)
+            colonne()
+    t.up()
+
 
 def IA () :
     cptJ1 = 0 # compteur de figures présentes du joueur
@@ -374,7 +423,7 @@ def IA () :
         elif tabFictif[2][2] == '□':
             choixIA = tableauPosition[2][2] 
             return str(choixIA)
-            
+
     choixIA = choice(tableauReussite[:-1])
     while choixIA in alreadyPlay :
         choixIA = choice(tableauReussite[:-1])
@@ -382,7 +431,7 @@ def IA () :
     return(choixIA)
 
 def game():
-    global firstPlayer, joueurPlay2
+    global firstPlayer, joueurPlay2, numEmplacement, emplacementWin
     grille_turtle()
     robot = input("Voulez vous jouer avec un bot ? [True or False] ")
     coupJouer = ""
@@ -390,10 +439,15 @@ def game():
     if robot == "False": 
         print("Vous avez choisi le mode multijoueur \n \n")
         joueurPlay2 = input("Joueur 2 choississez la figure que vous voulez jouer : ") #si pas robot alors le joueur 2 choisi la figure qu'il veut
+        joueurPlay2 = str(joueurPlay2.upper())
+        print(joueurPlay1)
+        print(joueurPlay2)
         print("\n")
-        while joueurPlay1 == joueurPlay2 or joueurPlay2 in [str(i) for i in range(1, 10)]:
-            joueurPlay2 = input("Joueur 2 rechoississez la figure que vous voulez jouer : ")
-            print("\n")
+        if joueurPlay1 == joueurPlay2 and not joueurPlay2 in ["X", "0"]:
+            while joueurPlay1 == joueurPlay2 and not joueurPlay2 in ["X", "0"]:
+                joueurPlay2 = input("Joueur 2 rechoississez la figure que vous voulez jouer, ['X', '0'] : ")
+                joueurPlay2 = str(joueurPlay2.upper())
+                print("\n")
     
     else : 
          print("Vous avez choisi le mode contre L'IA \n \n")
@@ -451,7 +505,22 @@ def game():
         time.sleep(0.5) 
 
         if joueurPlay1 in Victoire() or joueurPlay2 in Victoire() : # si un joueur a gagné renvoie le victorieux ou si toutes les cases ont étaient prises renvoie égalité
+            if coupJouer == "123456789" :
+                for i in range (3) :
+                    numEmplacement = str(i+1)
+                    emplacementWin = "ligne"
+                    victoire_turtle(numEmplacement,emplacementWin)
+                    emplacementWin = "colonne"
+                    victoire_turtle(numEmplacement,emplacementWin)
+                for i in range(2):
+                    numEmplacement = str(i+1)
+                    emplacementWin = "diagonale"
+                    victoire_turtle(numEmplacement,emplacementWin)
+            else :
+                victoire_turtle(numEmplacement,emplacementWin)
+
             return whoWin()
+
 
     print("Egalité")
     return 
