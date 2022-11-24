@@ -238,12 +238,6 @@
             #pour x dans le retour de l'éxécution de la fonction range de paramètre 3
                 #si la valeur de tabFictif d'indices x et (2 - x) * i - x * (i - 1) vaut "□"
                     #alors
-                    # si dificultie vaut la str "Hard" 
-                        # alors 
-                        # assigner à mot le retour de l'éxécution de la fonction input de paramètre le mot de passe
-                        # si mot est égale à password
-                            # alors
-                            # renvoyer    
                     #attribuer à choixIA la valeur de tableauPosition d'indices x et (2 - x) * i - x * (i - 1)
                     #retourner la chaine de caractere de choixIA
 

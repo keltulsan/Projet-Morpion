@@ -194,10 +194,6 @@ def IA (dificultie) :
         if cptJ2 == 2:
             for x in range(3):
                 if tabFictif[x][(2 - x) * i - x * (i - 1)] == '□' : #regarde quel caractère est '□'
-                    if dificultie == "Hard" :
-                        mot = input(("Entrer le mot de passe : "))
-                        if mot == password:
-                            return 
                     choixIA = tableauPosition[x][(2 - x) * i - x * (i - 1)] # donne la position du caratère '□' dans le tableau
                     return str(choixIA)
     for i in range(2):
@@ -326,7 +322,7 @@ def game():
                 coupJouer = caseJoueurPlay1
 
             elif firstPlayer == 2 :  
-                choixRobot = IA("") # esterEgg == "Hard"
+                choixRobot = IA("Hard") # esterEgg == "Hard"
                 alreadyPlay.append(choixRobot)
                 emplacementJoueur(choixRobot, joueurPlay2) 
                 firstPlayer -= 1 #modifie le joueur qui va commencer 
